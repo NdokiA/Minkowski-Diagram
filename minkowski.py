@@ -22,8 +22,8 @@ class minkowskiDiagram():
 
     self.ax.plot(xh1, yh1, color = 'red')
     self.ax.plot(xh2, yh2, color = 'red')
-    self.ax.plot(yh1, xh1, color = 'blue')
-    self.ax.plot(yh2, xh2, color = 'blue')
+    self.ax.plot(yh1, xh1, color = 'purple')
+    self.ax.plot(yh2, xh2, color = 'purple')
   
   def lorentz_transform(self, beta):
     gamma = 1/np.sqrt(1-beta**2)
