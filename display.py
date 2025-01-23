@@ -1,9 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt 
+import matplotlib.image as mpimg
 import streamlit as st
+from PIL import Image
 from minkowski import minkowskiDiagram
+from marker import add_image_marker
 
-fig, ax = plt.subplots(figsize = (10,10))
+fig, ax = plt.subplots(figsize = (8,8))
 ax.set_xlim(-5,5)
 ax.set_ylim(-5,5)
 ax.set_xlabel('Spatial Coordinate')
@@ -13,6 +16,9 @@ t = np.linspace(-100,100,201)
 t_hyp = np.linspace(-10,10,200)
 
 mD = minkowskiDiagram(ax, t, t_hyp)
+
+amg1 = Image.open('images/amogus1.webp').resize((300,300))
+amg2 = Image.open('images/amogus2.webp').resize((300,300))
 
 main = st.container()
 with main:
@@ -54,9 +60,11 @@ with main:
     point_transformed = mD.coordinate_transform(point, beta)
     
     ax.scatter(x_val, t_val, color = 'blue', marker = 'o', s = 100, label = 'Event')
-
+    add_image_marker(amg1, (x_val, t_val), ax, zoom = 0.1)
+    
     ax.scatter(point_transformed[0], point_transformed[1], color = 'red', marker = 'o', s = 100, label = 'Transformed Event')
-
+    add_image_marker(amg2, (point_transformed[0], point_transformed[1]), ax, zoom = 0.1)
+    
     origin = np.array([[0],[0]])
     ax.scatter(origin[0], origin[1], marker = 'o', color = 'black',s = 100)
     ax.text(0, 0, 'Origin', fontsize = 12, ha = 'right', va = 'top')
