@@ -25,27 +25,32 @@ class minkowskiDiagram():
     self.ax.plot(yh1, xh1, color = 'purple')
     self.ax.plot(yh2, xh2, color = 'purple')
   
-  def lorentz_transform(self, beta):
+  def inverse_lorentz_transform(self, beta):
     gamma = 1/np.sqrt(1-beta**2)
     return np.array([[gamma, beta*gamma],[beta*gamma, gamma]])
   
+  def lorentz_transform(self,beta):
+      gamma = 1/np.sqrt(1-beta**2)
+      return np.array([[gamma, -beta*gamma],[-beta*gamma, gamma]])
+    
   def grid(self):
     self.ax.plot(self.T,self.X, '-', color = 'gray', zorder = -1)
     self.ax.plot(self.X,self.T, '-', color = 'gray', zorder = -1)
   
-  def coordinate_transform(self, og_array, beta):
-    transformed_array = self.lorentz_transform(beta)@og_array
+  def coordinate_transform(self, og_array, beta, inverse = True):
+    transform = self.inverse_lorentz_transform if inverse else self.lorentz_transform
+    transformed_array = transform(beta)@og_array
     return transformed_array
   
-  def transformed_grid(self, beta):
+  def transformed_grid(self, beta, inverse = True):
     TX = np.array([self.T.reshape(-1), self.X.reshape(-1)])
-    TX_transform = self.lorentz_transform(beta)@TX
+    TX_transform = self.coordinate_transform(TX, beta, inverse)
     T_transform = TX_transform[0].reshape(self.T.shape)
     X_transform = TX_transform[1].reshape(self.X.shape)
 
     return T_transform, X_transform
   
-  def plot_transformed_grid(self, beta):
-    T_transform, X_transform = self.transformed_grid(beta)
+  def plot_transformed_grid(self, beta, inverse = True):
+    T_transform, X_transform = self.transformed_grid(beta, inverse)
     self.ax.plot(T_transform, X_transform, '-', color = 'black')
     self.ax.plot(X_transform, T_transform, '-', color = 'black')
