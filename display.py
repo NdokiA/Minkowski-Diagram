@@ -72,7 +72,7 @@ with main:
     ax.legend()
     st.pyplot(fig, use_container_width=True)
 
-    st.write(f"Original Coordinates: ({point[0][0]:.2f}, {point[1][0]:.2f})")
-    st.write(f"Transformed Coordinates: ({point_transformed[1][0]:.2f}, {point_transformed[0][0]:.2f})")
+    st.write(f"Moving Reference Frame: ({point[0][0]:.2f}, {point[1][0]:.2f})")
+    st.write(f"Fixed Reference Frame: ({point_transformed[1][0]:.2f}, {point_transformed[0][0]:.2f})")
 
 
