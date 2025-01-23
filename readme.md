@@ -19,14 +19,14 @@ This project was highly inspired by [Lorentz Transform Visualized](https://mathc
 
 Inverse Lorentz transformation equations on this program defined by
 
-\[ ct = \gamma (ct' + \beta x) \]
-\[ x = \gamma (x' + \beta ct) \]
+ct = γ (ct' + βx)  
+x  = γ (x' + βct)
 
-where:
-- \( \gamma = \frac{1}{\sqrt{1 - \beta^2}} \)
-- \( \beta \) is the velocity as a fraction of the speed of light
-- \( ct \) and \( x \) are the temporal and spatial coordinates according to fixed reference frame
-- \( ct' \) and \( x' \) are the temporal and spatial coordinates according to moving reference frame
+where:  
+- γ = 1 / sqrt(1 - β²)  
+- β is the velocity as a fraction of the speed of light  
+- ct and x are the temporal and spatial coordinates according to the fixed reference frame  
+- ct' and x' are the temporal and spatial coordinates according to the moving reference frame
 
 ## Usage
 
